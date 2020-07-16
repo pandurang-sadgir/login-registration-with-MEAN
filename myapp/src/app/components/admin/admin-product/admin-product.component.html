@@ -1,0 +1,100 @@
+&nbsp;&nbsp;<h2>Products</h2>
+
+<div *ngIf="state=='default'">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-stroked-button color="primary" (click)="add_new()">Add New</button>
+    </div>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="action" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="rate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> rate </th>
+        <td mat-cell *matCellDef="let row"> {{row.rate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="qty">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> quantity </th>
+        <td mat-cell *matCellDef="let row"> {{row.qty}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> type </th>
+        <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>-- </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" (click)="select(row)">
+            <mat-icon>edit</mat-icon>
+</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>
+  </div>
+
+</div>
+
+<mat-card class="example-card">
+
+<div *ngIf="state!=='default'">
+<br> <br>  <br>
+<h3>Product Master</h3>
+<!-- this is form -->
+
+<form [formGroup]="fgproduct" fxLayout="column" fxLayoutGap="5px">
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="name"  required formControlName="name" >
+    <mat-error>Name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Rate</mat-label>
+    <input matInput placeholder="rate"  required formControlName="rate" >
+    <mat-error>rate required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>quantity</mat-label>
+    <input matInput placeholder="quantity"  required formControlName="qty" >
+    <mat-error>quantity is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Type</mat-label>
+    <input matInput placeholder="type"  required formControlName="type" >
+    <mat-error>Type required</mat-error>
+  </mat-form-field>
+
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <button mat-stroked-button color="primary" *ngIf="state=='add_new'" (click)="save()">save</button>
+  <button mat-stroked-button color="primary" *ngIf="state=='select'" (click)="update()">update</button>
+  <button mat-stroked-button color="warn"  *ngIf="state=='select'" (click)="delete()">delete</button>
+  <button mat-stroked-button color="accent" (click)="back()">back</button>
+</div>
+</form>
+</div>
+</mat-card>

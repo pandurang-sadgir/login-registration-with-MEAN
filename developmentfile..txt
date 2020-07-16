@@ -1,0 +1,18 @@
+
+product side api:-
+http://localhost:3000/product/list
+get{}
+
+http://localhost:3000/product/add
+post{name:string,rate:number,qty:number,type:string}
+
+http://localhost:3000/product/update
+post{id:number,name:string,rate:number,qty:number,type:string}
+
+http://localhost:3000/product/delete
+post{id:number}
+
+
+1.database
+2.api
+3.angular

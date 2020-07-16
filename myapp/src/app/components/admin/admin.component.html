@@ -1,0 +1,12 @@
+
+  <mat-toolbar color="warn">
+    <mat-toolbar-row>
+      <span routerLink="/admin" routerLinkActive="router-link-active" >Real Tech</span>
+     &nbsp;&nbsp;&nbsp; <a mat-button routerLink="/admin/admin-product" routerLinkActive="active" >Product</a>
+      <span class="example-spacer"></span>
+
+      <a mat-button (click)="logout()" >Logout</a>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
